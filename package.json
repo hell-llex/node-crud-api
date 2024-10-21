@@ -7,7 +7,8 @@
     "build": "webpack",
     "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start:prod": "npm run build && node dist/bundle.js",
-    "start:multi": "node dist/bundle.js --cluster"
+    "start:dev-multi": "ts-node-dev --respawn --transpile-only src/index.ts --cluster",
+    "start:multi": "npm run build && node dist/bundle.js --cluster"
   },
   "keywords": [],
   "author": "",
