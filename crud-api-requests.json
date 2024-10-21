@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "b35a3f85-1b57-467e-9dbb-9785db3a64ff",
+		"name": "CRUD API Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "4000",
+					"path": ["api", "users"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"JohnDoe\",\"age\":30,\"hobbies\":[\"reading\",\"gaming\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "4000",
+					"path": ["api", "users"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users/1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "4000",
+					"path": ["api", "users", "1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"JaneDoe\",\"age\":32,\"hobbies\":[\"painting\",\"running\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "4000",
+					"path": ["api", "users", "1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users/1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "4000",
+					"path": ["api", "users", "1f7f6b77-1d99-4c88-8d8b-fd7e3c2d73b7"]
+				}
+			},
+			"response": []
+		}
+	]
+}
