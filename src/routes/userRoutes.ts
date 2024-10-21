@@ -8,6 +8,8 @@ import {
 } from '../controllers/userController';
 import { extractParamsFromUrl } from '../utils/params';
 
+const isClusterMode = () => process.argv.includes('--cluster');
+
 type RouteHandler = (
 	req: IncomingMessage,
 	res: ServerResponse,
@@ -56,7 +58,11 @@ export const userRoutes = (req: IncomingMessage, res: ServerResponse) => {
 
 	if (routeMatch) {
 		const { handler, params } = routeMatch;
-		
+		if (isClusterMode()) {
+			console.log(
+				`---Worker ${process.pid} received request on port: ${process.env.PORT}, URL: ${pathname}\n`
+			);
+		}
 		try {
 			handler(req, res, params);
 		} catch (error) {
