@@ -8,32 +8,32 @@ import { getUsersStore, addUserStore, updateUserStore, deleteUserStore } from '.
 const workerPorts: number[] = [];
 let currentWorker = 0;
 
-const syncUsersToWorkers = () => {
+const syncUsersToWorkers = async () => {
 	for (const id in cluster.workers) {
 		if (cluster.workers[id]) {
-			cluster.workers[id]?.send({ action: 'syncUsers', payload: getUsersStore() });
+			cluster.workers[id]?.send({ action: 'syncUsers', payload: await getUsersStore() });
 		}
 	}
 };
 
-const handleWorkerMessage = (worker: Worker, message: any) => {
+const handleWorkerMessage = async (worker: Worker, message: any) => {
 	const { action, payload } = message;
 
 	switch (action) {
 		case 'addUser':
-			addUserStore(payload);
+			await addUserStore(payload);
 			syncUsersToWorkers();
 			break;
 		case 'updateUser':
-			updateUserStore(payload);
+			await updateUserStore(payload);
 			syncUsersToWorkers();
 			break;
 		case 'deleteUser':
-			deleteUserStore(payload);
+			await deleteUserStore(payload);
 			syncUsersToWorkers();
 			break;
 		case 'syncUsers':
-			worker.send({ action: 'syncUsers', payload: getUsersStore() });
+			worker.send({ action: 'syncUsers', payload: await getUsersStore() });
 			break;
 		default:
 			break;
@@ -105,7 +105,6 @@ export const startCluster = (port: number) => {
 
 			process.on('message', (message: any) => {
 				const { action, payload } = message;
-
 				if (action === 'syncUsers') {
 					syncUsers(payload);
 				}
