@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"rootDirs": ["src"],
 		"lib": ["es2020"],
-		"types": ["node"],
+		"types": ["jest", "node"],
 		"module": "Node16",
 		"target": "ES2020",
 		"moduleResolution": "node16",
@@ -15,6 +15,6 @@
 		"strict": true,
 		"resolveJsonModule": true
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "test/**/*.ts"],
 	"exclude": ["node_modules", "webpack.config.js"]
 }
